@@ -1,41 +1,34 @@
 import Image from 'next/image';
 import React from 'react';
+import EventData from './event-data';
+import { CEvent } from '@/core/types';
+import Link from 'next/link';
 
 type Props = {
   event: CEvent;
 };
 
-function EventCard({ event: { title, image, date } }: Props) {
-  const minutes = date.getMinutes();
-  const time = `${date.getHours()}:${minutes < 10 ? '0' + minutes : minutes}`;
+function EventCard({ event }: Props) {
+  const { title, image, id } = event;
 
   return (
-    <div className='flex gap-3 p-2 items-center'>
+    <Link
+      className='flex gap-3 p-2 items-center rounded-md bg-white shadow'
+      href={`/e/${id}`}
+    >
       <div>
         <Image
           className='rounded-md'
-          src={image}
-          alt=''
+          src='/evt-placeholder.jpeg'
+          alt={title}
           width={150}
           height={150}
         />
       </div>
       <div>
-        <h3 className='mb-1 font-bold'>{title}</h3>
-        <div>
-          <p>Lugar: (TODO)</p>
-          <p>Hora: {time}</p>
-          <p>
-            Fecha:{' '}
-            {date.toLocaleDateString('es-CO', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </p>
-        </div>
+        <EventData event={event} />
       </div>
-    </div>
+    </Link>
   );
 }
 

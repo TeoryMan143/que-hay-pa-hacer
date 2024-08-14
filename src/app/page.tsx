@@ -1,15 +1,12 @@
 import EventCard from '@/components/event-card';
+import { eventsPlaceh } from '@/core/mock';
 
 export default function Home() {
   return (
-    <div>
-      <EventCard
-        event={{
-          title: 'Titulo',
-          date: new Date(),
-          image: '/evt-placeholder.jpeg',
-        }}
-      />
+    <div className='mb-24 flex flex-col gap-3 p-2 mt-16'>
+      {eventsPlaceh.map(e => (
+        <EventCard key={e.id} event={e} />
+      ))}
     </div>
   );
 }

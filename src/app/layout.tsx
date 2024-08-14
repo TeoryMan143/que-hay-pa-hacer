@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Link from 'next/link';
 import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <header className='bg-rose-600 text-white p-3'>
-          <h1 className='text-3xl text-center'>¿Que hay pa&apos; hacer?</h1>
+      <body className={inter.className + ' bg-rose-100'}>
+        <header className='bg-rose-600 text-white p-3 fixed w-dvw top-0'>
+          <h1 className='text-3xl text-center font-bold'>
+            ¿Que hay pa&apos; hacer?
+          </h1>
         </header>
         <main>{children}</main>
         <Footer />

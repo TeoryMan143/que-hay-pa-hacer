@@ -1,6 +1,8 @@
-type CEvent = {
+export type CEvent = {
+  id: string;
   title: string;
-  // TODO: google location api
+  latlng: { lat: number; lng: number };
   date: Date;
   image: string;
+  description: string;
 };
