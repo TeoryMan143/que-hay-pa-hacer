@@ -23,7 +23,7 @@ export default function RootLayout({
             ¿Que hay pa&apos; hacer?
           </h1>
         </header>
-        <main>{children}</main>
+        <main className='mt-16'>{children}</main>
         <Footer />
       </body>
     </html>

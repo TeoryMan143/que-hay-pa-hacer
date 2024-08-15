@@ -1,6 +1,11 @@
+import { getAddressFromCoords } from '@/core/lib/location';
 import { CEvent } from '@/core/types';
 
-function EventData({ event: { date, title } }: { event: CEvent }) {
+async function EventData({
+  event: { date, title, latlng },
+}: {
+  event: CEvent;
+}) {
   const minutes = date.getMinutes();
   const time = `${date.getHours()}:${minutes < 10 ? '0' + minutes : minutes}`;
   const formatedDate = date.toLocaleDateString('es-CO', {
@@ -9,12 +14,14 @@ function EventData({ event: { date, title } }: { event: CEvent }) {
     day: 'numeric',
   });
 
+  const address = await getAddressFromCoords(latlng);
+
   return (
     <>
       <h3 className='mb-1 font-bold text-center text-lg'>{title}</h3>
       <div>
         <p>
-          <span className='font-semibold'>Lugar:</span> (TODO)
+          <span className='font-semibold'>Lugar:</span> {address}
         </p>
         <p>
           <span className='font-semibold'>Hora:</span> {time}

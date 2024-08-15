@@ -1,8 +1,8 @@
 import EventData from '@/components/event-data';
 import Image from 'next/image';
 import { permanentRedirect } from 'next/navigation';
-import { eventsPlaceh } from '@/core/mock';
 import Link from 'next/link';
+import { getEventById } from '@/core/lib/events';
 
 type Props = {
   params: {
@@ -10,15 +10,15 @@ type Props = {
   };
 };
 
-function EventPage({ params: { eventId } }: Props) {
-  const sEvent = eventsPlaceh.find(e => e.id === eventId);
+async function EventPage({ params: { eventId } }: Props) {
+  const sEvent = await getEventById(eventId);
 
-  if (!sEvent) permanentRedirect('/');
+  if (sEvent instanceof Error) permanentRedirect('/');
 
-  const { title, image, description } = sEvent;
+  const { title, description, latlng } = sEvent;
 
   return (
-    <div className='flex p-5 bg-white flex-col gap-5 mt-16'>
+    <div className='flex p-5 bg-white flex-col gap-5'>
       <div className='flex items-center'>
         <div className='p-2'>
           <Image
@@ -35,8 +35,10 @@ function EventPage({ params: { eventId } }: Props) {
       </div>
       <p className='text-slate-500'>{description}</p>
       <Link
-        href='#'
         className='flex justify-center gap-3 text-slate-600 hover:text-blue-700 active:bg-gray-200 transition-colors p-2 rounded-sm'
+        href={`https://www.google.com/maps/search/?api=1&query=${latlng.lat}%2C${latlng.lng}`}
+        target='_blank'
+        rel='noreferrer'
       >
         {' '}
         <svg

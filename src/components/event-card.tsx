@@ -9,7 +9,7 @@ type Props = {
 };
 
 function EventCard({ event }: Props) {
-  const { title, image, id } = event;
+  const { title, id } = event;
 
   return (
     <Link
