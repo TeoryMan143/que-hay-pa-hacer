@@ -1,5 +1,7 @@
+import { passionOne } from '@/core/fonts';
 import { getAddressFromCoords } from '@/core/lib/location';
 import { CEvent } from '@/core/types';
+import { cn } from '@/core/utils';
 
 async function EventData({
   event: { date, title, latlng },
@@ -14,11 +16,20 @@ async function EventData({
     day: 'numeric',
   });
 
-  const address = await getAddressFromCoords(latlng);
+  const res = await getAddressFromCoords(latlng);
+
+  const address = res instanceof Error ? 'error' : res;
 
   return (
     <>
-      <h3 className='mb-1 font-bold text-center text-lg'>{title}</h3>
+      <h3
+        className={cn(
+          'mb-1 font-bold text-center text-lg',
+          passionOne.className,
+        )}
+      >
+        {title}
+      </h3>
       <div>
         <p>
           <span className='font-semibold'>Lugar:</span> {address}

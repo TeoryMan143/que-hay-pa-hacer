@@ -11,7 +11,7 @@ const TextFormInput = forwardRef<
       ref={ref}
       className={cn(
         className,
-        'rounded-md p-2 placeholder:text-slate-400 focus:outline-2 focus:outline-rose-500',
+        'rounded-md p-2 placeholder:text-slate-400 focus:outline-2 focus:outline-rose-500 bg-white',
       )}
     />
   );

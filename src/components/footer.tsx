@@ -1,12 +1,26 @@
+'use client';
+
+import { cn } from '@/core/utils';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function Footer() {
+  const pathName = usePathname();
+
   return (
-    <footer className='fixed bottom-0 w-dvw bg-rose-300'>
+    <footer className='fixed bottom-0 w-dvw bg-[#f2585b]'>
       <nav className='p-5'>
         <ul className='flex gap-12 text-3xl justify-center'>
           <li>
-            <Link href='/'>
+            <Link
+              href='/'
+              className={cn(
+                {
+                  'text-amber-400': pathName === '/',
+                },
+                'transition-colors',
+              )}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='1.13em'
@@ -21,7 +35,15 @@ function Footer() {
             </Link>
           </li>
           <li>
-            <Link href='/add'>
+            <Link
+              href='/add'
+              className={cn(
+                {
+                  'text-amber-400': pathName === '/add',
+                },
+                'transition-colors',
+              )}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='1em'

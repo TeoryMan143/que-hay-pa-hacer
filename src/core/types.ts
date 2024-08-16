@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { selectEventSchema } from './schemas';
+import {
+  formEventSchema,
+  insertEventSchema,
+  selectEventSchema,
+} from './schemas';
 
 export type CEvent = z.infer<typeof selectEventSchema> & {
   latlng: {
@@ -7,3 +11,12 @@ export type CEvent = z.infer<typeof selectEventSchema> & {
     lng: number;
   };
 };
+
+export type InsertEvent = z.infer<typeof insertEventSchema> & {
+  latlng: {
+    lat: number;
+    lng: number;
+  };
+};
+
+export type FormEvent = z.infer<typeof formEventSchema>;

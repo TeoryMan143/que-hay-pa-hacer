@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import { getEventById } from '@/core/lib/events';
+import { UTAPI_URL } from '@/core/lib/utapi';
 
 type Props = {
   params: {
@@ -15,15 +16,15 @@ async function EventPage({ params: { eventId } }: Props) {
 
   if (sEvent instanceof Error) permanentRedirect('/');
 
-  const { title, description, latlng } = sEvent;
+  const { title, description, latlng, image } = sEvent;
 
   return (
-    <div className='flex p-5 bg-white flex-col gap-5'>
+    <div className='flex p-5 flex-col gap-5'>
       <div className='flex items-center'>
         <div className='p-2'>
           <Image
             className='rounded-md'
-            src='/evt-placeholder.jpeg'
+            src={UTAPI_URL + image}
             alt={title}
             width={150}
             height={150}
