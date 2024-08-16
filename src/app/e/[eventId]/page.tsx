@@ -36,7 +36,7 @@ async function EventPage({ params: { eventId } }: Props) {
       </div>
       <p className='text-slate-500'>{description}</p>
       <Link
-        className='flex justify-center gap-3 text-slate-600 hover:text-blue-700 active:bg-gray-200 transition-colors p-2 rounded-sm'
+        className='flex justify-center gap-3 text-[#AF0007] hover:text-blue-700 active:bg-gray-200 transition-colors p-2 rounded-sm'
         href={`https://www.google.com/maps/search/?api=1&query=${latlng.lat}%2C${latlng.lng}`}
         target='_blank'
         rel='noreferrer'
